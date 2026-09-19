@@ -6,7 +6,7 @@ import { Server } from "socket.io";
 
 import { connectDB } from "./config/db.js";
 import questionsRouter from "./routes/questions.js";
-import { registerSocketHandlers } from "./sockets/index.js";
+import { registerSocketHandler } from "./sockets/index.js";
 
 const PORT = process.env.PORT || 5000;
 const CLIENT_URL  = process.env.CLIENT_URL || "http://localhost:5173";
@@ -27,7 +27,7 @@ const io = new Server(server, {
     },
 });
 
-registerSocketHandlers(io);
+registerSocketHandler(io);
 
 connectDB().then(() => {
     server.listen(PORT, () => {
